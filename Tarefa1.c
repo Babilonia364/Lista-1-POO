@@ -3,6 +3,7 @@
 
 void Soma();									//Calcular a media de 5 valores usando apenas 2 variaveis
 void Ordena();									//Ordenar quatro palavras de 3 letras
+void Palindromo();								//Verifica se um string de 50 caracteres e palindromo
 
 void Soma()										//Funcao de media da questão 1
 {
@@ -26,7 +27,7 @@ void Soma()										//Funcao de media da questão 1
 
 void Ordena()									//Funcao para ordenar storingues
 {
-	char pala1[4]="abc", pala2[4]="bcd", pala3[4]="cde", pala4[4]="efg";
+	char pala1[4]="bcd", pala2[4]="abc", pala3[4]="cde", pala4[4]="efg";
 	int val1=0, val2=0,val3=0;
 	//fgets(pala1, 3, stdin);											//To tendo problema com fgets, alguem se habilita a resolver?
 	//fgets(pala2, 3, stdin);
@@ -131,6 +132,27 @@ void Ordena()									//Funcao para ordenar storingues
 	}
 }
 
+void Palindromo()							//Algoritimo da desonra, 70% disso alguem me ajudou a fazer :'(
+{
+	char PosPali[51];
+	int tamanho=0, inicio, fim, pali=-1;
+	fgets(PosPali, 50, stdin);
+	while(PosPali[tamanho] != '\0')															//Analisa o tamanho da palavra digitada, e nao o tamanho total da string
+		tamanho++;
+	for(inicio=0, fim=tamanho-1; fim>0 && PosPali[inicio] != '\0'; inicio++, fim--)			//Percorre o laco pelo inicio e pelo fim
+	{
+		if(PosPali[fim] != PosPali[inicio])	//Compara as letrinhas das posicoes simetricas iniciais e finais
+		{
+			pali=0;							//Se forem diferentes, sobe a flag e acaba o laco
+			break;
+		}
+	}
+	if(pali==-1)
+	{
+		printf("Palindromo Sim\n");
+	}else{printf("Palindromo Nao\n");}
+}
+
 int main()
 {
 	/*int menu;
@@ -146,8 +168,12 @@ int main()
 			Ordena();
 		break;
 		
+		case 3:
+			Palindromo();
+		break;
+		
 		default:
 		return 0;
 	}*/
-	Ordena();
+	Palindromo();
 }
