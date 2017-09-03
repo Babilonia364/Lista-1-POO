@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void Soma();									//Calcular a media de 5 valores usando apenas 2 variaveis
 void Ordena();									//Ordenar quatro palavras de 3 letras
 void Palindromo();								//Verifica se um string de 50 caracteres e palindromo
+void Velha();									//Ler um 'tabuleiro' de jogo da velha (tic tac toe) e dar o resultado
 
 void Soma()										//Funcao de media da questão 1
 {
@@ -153,12 +155,77 @@ void Palindromo()							//Algoritimo da desonra, 70% disso alguem me ajudou a fa
 	}else{printf("Palindromo Nao\n");}
 }
 
+void Velha()									//Funcao feita com base no jogo turnos, com o programa passando a rodar a partir do quinto turno
+{
+	char tabul[3][3], flagX='1', flagO='1';
+	int i, j;
+	for(j=0; j<3; j++)							//Laco for feito apenas para teste
+	{
+		for(i=0; i<3; i++)
+		{
+			if(j==2-i)
+				tabul[i][j]='2';
+			else
+				tabul[i][j]='1';
+		}
+	}
+	i=1;
+	for(j=0; j<3; j++)							//Testes logicos de checagem de vencedor
+	{
+		if((tabul[i-1][j]==tabul[i][j])&&(tabul[i][j]==tabul[i+1][j])&&(tabul[i+1][j]=='2'))
+		{
+			flagX='0';
+			break;
+		}else if((tabul[i-1][j]==tabul[i][j])&&(tabul[i][j]==tabul[i+1][j])&&(tabul[i+1][j]=='0'))
+		{
+			flagO='0';
+			break;
+		}else if((j==1) && (tabul[i-1][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i+1][j+1])&&(tabul[i+1][j+1]=='2'))
+		{
+			flagX='0';
+			break;
+		}else if((j==1) && (tabul[i-1][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i+1][j+1])&&(tabul[i+1][j+1]=='0'))
+		{
+			flagO='0';
+			break;
+		}
+	}
+	j=1;
+	for(i=0; i<3; i++)
+	{
+		if((tabul[i][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i][j+1])&&(tabul[i][j+1]=='2'))
+		{
+			flagX='0';
+			break;
+		}else if((tabul[i][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i][j+1])&&(tabul[i][j+1]=='0'))
+		{
+			flagO='0';
+			break;
+		}else if((i==1) && (tabul[i+1][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i-1][j+1])&&(tabul[i-1][j+1]=='2'))
+		{
+			flagX='0';
+			break;
+		}else if((i==1) && (tabul[i+1][j-1]==tabul[i][j])&&(tabul[i][j]==tabul[i-1][j+1])&&(tabul[i-1][j+1]=='0'))
+		{
+			flagO='0';
+			break;
+		}
+	}
+	if(flagX=='0')
+	{
+		printf("X venceu\n");
+	}else if(flagO=='0')
+	{
+		printf("O venceu\n");
+	}else{printf("Deu velha\n");}
+}
+
 int main()
 {
-	/*int menu;
-	printf("1 - Media\n2- Ordenacao\n")
-	scanf("%d", menu);
-	switch()
+	int menu;
+	printf("1 - Media\n2- Ordenacao\n3- Palindromo\n4- Velha\n\n");
+	scanf("%d", &menu);
+	switch(menu)
 	{
 		case 1:
 			Soma();
@@ -172,8 +239,11 @@ int main()
 			Palindromo();
 		break;
 		
+		case 4:
+			Velha();
+		break;
+		
 		default:
 		return 0;
-	}*/
-	Palindromo();
+	}
 }
