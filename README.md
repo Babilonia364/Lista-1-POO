@@ -1,2 +1,2 @@
 # Lista-1-POO
-Questões da lista 1 de POO
+Lista 1 terminada, se tiverem algo a adicionar, favor entrar em contato ^^
