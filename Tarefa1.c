@@ -143,6 +143,10 @@ void Palindromo()							//Algoritimo da desonra, 70% disso alguem me ajudou a fa
 		tamanho++;
 	for(inicio=0, fim=tamanho-1; fim>0 && PosPali[inicio] != '\0'; inicio++, fim--)			//Percorre o laco pelo inicio e pelo fim
 	{
+		while(PosPali[inicio]==' ')															//Enquanto houver espaço na string ele pula
+			inicio++;
+		while(PosPali[fim]==' ')															//Analogo ao comentario anterior
+			fim--;
 		if(PosPali[fim] != PosPali[inicio])	//Compara as letrinhas das posicoes simetricas iniciais e finais
 		{
 			pali=0;							//Se forem diferentes, sobe a flag e acaba o laco
