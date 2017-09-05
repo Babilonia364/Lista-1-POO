@@ -2,25 +2,28 @@
 #include <string.h>
 #include <stdlib.h>
 
-int ler (int V[], int n, int A);					//Funcao recursiva que identifica o elemento maximo do vetor
-void replace();										//Recebe duas strings e substitui todas as ocorrencias da segunda string na primeira
-int bubble_sort_mod(int vetor[], int len);				//Ordenar as pares na esquerda e impares na direita
+int ler (int V[], int n);						//Funcao recursiva que identifica o elemento maximo do vetor
+void replace();									//Recebe duas strings e substitui todas as ocorrencias da segunda string na primeira
+int bubble_sort_mod(int vetor[], int len);		//Ordenar as pares na esquerda e impares na direita
+int VerOrdem(int vetor[], int len);
+int* FillVet(int vetor[], int len);
 
-int ler (int V[], int n, int A)
+int ler (int V[], int n)
 {
-	if(V[n]<A)										//Se A nunca for maior que V[n] significa que o valor de A ja e o menor do vetor
+	int A=0;
+	if(V[n-1]>A)										//Se A nunca for maior que V[n] significa que o valor de A ja e o menor do vetor
 	{
-		V[n]=A;
-		if(n==0)									//Se o tamanho do vetor chegou ao fim, retornar A
+		A=V[n-1];
+		if((n-1)==0)									//Se o tamanho do vetor chegou ao fim, retornar A
 		{
 			return A;
 		}else										//Se nao continua no laço
 		{
-			return ler(V, n-1, A);
+			return ler(V, n-1);
 		}
-	}else if(n!=0)									//Se o vetor nao chegou ao seu fim, continue o laco
+	}else if((n-1)!=0)									//Se o vetor nao chegou ao seu fim, continue o laco
 	{
-		return ler(V, n-1, A);
+		return ler(V, n-1);
 	}else{return A;}								//Se chegou, abortar missao
 }
 
@@ -39,20 +42,10 @@ void replace()										//Essa deu trabalho, nossa sem hora
 	printf("temp e:%s\n", temp);
 }
 
-int bubble_sort_mod(int vetor[], int len)							//Modificação do algoritmo de ordenacao bubble sort
+int bubble_sort_mod(int vetor[], int len)			//Modificação do algoritmo de ordenacao bubble sort
 {
 	int k, j;
-	for(j=0; j<len; j++)								//Preenchendo o vetor com numeros aleatorios de 0 a 20
-	{
-		vetor[j]=rand()%20;
-	}
-	printf("Vetor nao organizado: (");					//Mostra o estado inicial do vetor
-	for(j=0; j<len; j++)
-	{
-		printf("%d ", vetor[j]);
-	}
-	printf(")\n");
-	for(k=len-1; k>0; k--)								//Algoritmo bubble sorte modificado rodando
+	for(k=len-1; k>0; k--)							//Algoritmo bubble sorte modificado rodando
 	{
 		for(j=0; j<k; j++)
 		{
@@ -72,18 +65,84 @@ int bubble_sort_mod(int vetor[], int len)							//Modificação do algoritmo de 
 	printf(")\n");
 }
 
+int VerOrdem(int vetor[], int len)					//Falta fazer sem ter o tamanho do vetor
+{
+	int i, flag;
+	for(i=0, flag=0; i<len-1; i++)
+	{
+		if(vetor[i]<vetor[i+1] && flag>=0)
+			flag++;
+	else if(vetor[i]>vetor[i+1] && flag<=0)
+			flag--;
+		else
+		{
+			flag=0;
+			break;
+		}
+	}
+	if(flag>0)
+		return 1;
+	else if(flag<0)
+		return-1;
+	else
+		return 0;
+}
+
+int* FillVet(int vetor[], int len)
+{
+	int j;
+	for(j=0; j<len; j++)							//Preenchendo o vetor com numeros aleatorios de 0 a 20
+	{
+		vetor[j]=rand()%20;
+	}
+	printf("Vetor gerado pseudoaleatoriamente: (");				//Mostra o estado inicial do vetor
+	for(j=0; j<len; j++)
+	{
+		printf("%d ", vetor[j]);
+	}
+	printf(")\n\n");
+	return vetor;
+}
+
 int main()
 {
-/*	int menu=0;
+	int menu=0;
+	printf("1- Elemento Maximo\n2- Substituir String\n3- Ordenar Pares e Impares\n4- Ver a ordenacao do vetor\n");
 	scanf("%d", &menu);
+	getchar();
 	switch(menu)
 	{
 		case 1:
 		{
+			int *v, len=20, A;
+			v=malloc(len*sizeof(int));
+			v=FillVet(v, len);
+			A=ler (v, len);
+			printf("O valor maximo e: %d\n", A);
+			free (v);
+			break;
+		}
+		case 2:
+			replace();
+			break;
+		case 3:
+		{
+			int *v, len=20;
+			v=malloc(len*sizeof(int));
+			v=FillVet(v, len);
+			bubble_sort_mod(v, len);
+			free (v);
+			break;
+		}
+		case 4:
+		{
+			int *v, len=20, n;
+			v=malloc(len*sizeof(int));
+			v=FillVet(v, len);
+			n=VerOrdem(v, len);
+			printf("n e: %d\n", n);
+			free (v);
 			break;
 		}
 	}
-	*/
-	int V[20], len=20;
-	bubble_sort_mod(V, len);
 }
