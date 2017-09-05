@@ -4,7 +4,7 @@
 
 void Soma();									//Calcular a media de 5 valores usando apenas 2 variaveis
 void Ordena();									//Ordenar quatro palavras de 3 letras
-void Palindromo();								//Verifica se um string de 50 caracteres e palindromo
+void Palindromo();				//Verifica se um string de 50 caracteres e palindromo
 void Velha();									//Ler um 'tabuleiro' de jogo da velha (tic tac toe) e dar o resultado
 
 void Soma()										//Funcao de media da questão 1
@@ -137,12 +137,11 @@ void Ordena()									//Funcao para ordenar storingues
 void Palindromo()							//Algoritimo da desonra, 70% disso alguem me ajudou a fazer :'(
 {
 	char PosPali[52];
-	int tamanho=0, inicio, fim, pali=-1;
+	int inicio, fim, pali=-1;
+	
 	fgets(PosPali, 51, stdin);
 	PosPali[strlen(PosPali)-1]='\0';
-	while(PosPali[tamanho] != '\0')															//Analisa o tamanho da palavra digitada, e nao o tamanho total da string
-		tamanho++;
-	for(inicio=0, fim=tamanho-1; fim>0 && PosPali[inicio] != '\0'; inicio++, fim--)			//Percorre o laco pelo inicio e pelo fim
+	for(inicio=0, fim=(strlen(PosPali)-1); fim>0 && PosPali[inicio] != '\0'; inicio++, fim--)			//Percorre o laco pelo inicio e pelo fim
 	{
 		while(PosPali[inicio]==' ')															//Enquanto houver espaço na string ele pula
 			inicio++;
@@ -228,8 +227,9 @@ void Velha()									//Funcao feita com base no jogo turnos, com o programa pass
 int main()
 {
 	int menu;
-	printf("1 - Media\n2- Ordenacao\n3- Palindromo\n4- Velha\n\n");
+	printf("1- Media\n2- Ordenacao\n3- Palindromo\n4- Velha\n\n");
 	scanf("%d", &menu);
+	getchar();
 	switch(menu)
 	{
 		case 1:
