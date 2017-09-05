@@ -29,12 +29,12 @@ void Soma()										//Funcao de media da questão 1
 
 void Ordena()									//Funcao para ordenar storingues
 {
-	char pala1[4]="bcd", pala2[4]="abc", pala3[4]="cde", pala4[4]="efg";
+	char pala1[5]="bcd", pala2[5]="abc", pala3[5]="cde", pala4[5]="efg";
 	int val1=0, val2=0,val3=0;
-	//fgets(pala1, 3, stdin);											//To tendo problema com fgets, alguem se habilita a resolver?
-	//fgets(pala2, 3, stdin);
-	//fgets(pala3, 3, stdin);
-	//fgets(pala4, 3, stdin);
+	//fgets(pala1, 4, stdin);											//To tendo problema com fgets, alguem se habilita a resolver?
+	//fgets(pala2, 4, stdin);
+	//fgets(pala3, 4, stdin);
+	//fgets(pala4, 4, stdin);
 	val1=strcmp(pala1, pala2);
 	val2=strcmp(pala2, pala3);
 	val3=strcmp(pala3, pala4);
@@ -136,9 +136,10 @@ void Ordena()									//Funcao para ordenar storingues
 
 void Palindromo()							//Algoritimo da desonra, 70% disso alguem me ajudou a fazer :'(
 {
-	char PosPali[51];
+	char PosPali[52];
 	int tamanho=0, inicio, fim, pali=-1;
-	fgets(PosPali, 50, stdin);
+	fgets(PosPali, 51, stdin);
+	PosPali[strlen(PosPali)-1]='\0';
 	while(PosPali[tamanho] != '\0')															//Analisa o tamanho da palavra digitada, e nao o tamanho total da string
 		tamanho++;
 	for(inicio=0, fim=tamanho-1; fim>0 && PosPali[inicio] != '\0'; inicio++, fim--)			//Percorre o laco pelo inicio e pelo fim
