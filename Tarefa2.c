@@ -1,9 +1,10 @@
 #include <stdio.h>									//To viciado 'Heidis Küken - Das kleine Küken piept', ouçam, e mto bom!!!
 #include <string.h>
+#include <stdlib.h>
 
 int ler (int V[], int n, int A);					//Funcao recursiva que identifica o elemento maximo do vetor
 void replace();										//Recebe duas strings e substitui todas as ocorrencias da segunda string na primeira
-
+int bubble_sort_mod(int vetor[], int len);				//Ordenar as pares na esquerda e impares na direita
 
 int ler (int V[], int n, int A)
 {
@@ -38,6 +39,39 @@ void replace()										//Essa deu trabalho, nossa sem hora
 	printf("temp e:%s\n", temp);
 }
 
+int bubble_sort_mod(int vetor[], int len)							//Modificação do algoritmo de ordenacao bubble sort
+{
+	int k, j;
+	for(j=0; j<len; j++)								//Preenchendo o vetor com numeros aleatorios de 0 a 20
+	{
+		vetor[j]=rand()%20;
+	}
+	printf("Vetor nao organizado: (");					//Mostra o estado inicial do vetor
+	for(j=0; j<len; j++)
+	{
+		printf("%d ", vetor[j]);
+	}
+	printf(")\n");
+	for(k=len-1; k>0; k--)								//Algoritmo bubble sorte modificado rodando
+	{
+		for(j=0; j<k; j++)
+		{
+			if((vetor[j+1]%2)==0)
+			{
+				vetor[j]=vetor[j]+vetor[j+1];
+				vetor[j+1]=vetor[j]-vetor[j+1];
+				vetor[j]=vetor[j]-vetor[j+1];
+			}
+		}
+	}
+	printf("Vetor organizado: (");						//Mostra o estado final do vetor depois de passar pelo bubble sort
+	for(j=0; j<len; j++)
+	{
+		printf("%d ", vetor[j]);
+	}
+	printf(")\n");
+}
+
 int main()
 {
 /*	int menu=0;
@@ -50,4 +84,6 @@ int main()
 		}
 	}
 	*/
+	int V[20], len=20;
+	bubble_sort_mod(V, len);
 }
