@@ -2,28 +2,28 @@
 #include <string.h>
 #include <stdlib.h>
 
-int ler (int V[], int n);						//Funcao recursiva que identifica o elemento maximo do vetor
+int ler (int V[], int n, int A);						//Funcao recursiva que identifica o elemento maximo do vetor
 void replace();									//Recebe duas strings e substitui todas as ocorrencias da segunda string na primeira
 int bubble_sort_mod(int vetor[], int len);		//Ordenar as pares na esquerda e impares na direita
 int VerOrdem(int vetor[], int len);
 int* FillVet(int vetor[], int len);
 
-int ler (int V[], int n)
+int ler (int V[], int n, int A)
 {
-	int A=0;
-	if(V[n-1]>A)										//Se A nunca for maior que V[n] significa que o valor de A ja e o menor do vetor
+	if(V[n]>A)										//Se A nunca for maior que V[n] significa que o valor de A ja e o menor do vetor
 	{
-		A=V[n-1];
-		if((n-1)==0)									//Se o tamanho do vetor chegou ao fim, retornar A
+		A=V[n];
+		printf("%d\n", A);
+		if((n)==0)									//Se o tamanho do vetor chegou ao fim, retornar A
 		{
 			return A;
 		}else										//Se nao continua no laço
 		{
-			return ler(V, n-1);
+			return ler(V, n-1, A);
 		}
-	}else if((n-1)!=0)									//Se o vetor nao chegou ao seu fim, continue o laco
+	}else if((n)!=0)									//Se o vetor nao chegou ao seu fim, continue o laco
 	{
-		return ler(V, n-1);
+		return ler(V, n-1, A);
 	}else{return A;}								//Se chegou, abortar missao
 }
 
@@ -114,10 +114,10 @@ int main()
 	{
 		case 1:
 		{
-			int *v, len=20, A;
+			int *v, len=20, A=0;
 			v=malloc(len*sizeof(int));
 			v=FillVet(v, len);
-			A=ler (v, len);
+			A=ler (v, len, A);
 			printf("O valor maximo e: %d\n", A);
 			free (v);
 			break;
