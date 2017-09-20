@@ -1,7 +1,5 @@
 #include <stdio.h>														//Questao 1
 
-int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado);
-
 struct Pessoa
 {
 	int rg;																//Deveria usar double aou inves de int nao?
@@ -9,6 +7,8 @@ struct Pessoa
 	char nome[80];
 };
 struct Pessoa cadastro[100];
+
+int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado);	//Coloca os prototipos sempre depois do struct
 
 int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado)	//Para entender sobre busca binaria, ver: https://www.ime.usp.br/~pf/algoritmos/aulas/bubi2.html
 {
