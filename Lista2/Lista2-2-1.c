@@ -1,8 +1,10 @@
 #include <stdio.h>														//Questao 1
 
+int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado);
+
 struct Pessoa
 {
-	int rg;
+	int rg;																//Deveria usar double aou inves de int nao?
 	int cpf;
 	char nome[80];
 };
