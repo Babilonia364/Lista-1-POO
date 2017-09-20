@@ -1,46 +1,72 @@
-#include <stdio.h>														//Questao 1
+#include<stdio.h>
+#include<stdlib.h>
 
-struct Pessoa
+struct Data
 {
-	int rg;																//Deveria usar double aou inves de int nao?
-	int cpf;
-	char nome[80];
+	int dia;
+	int mes;
+	int ano;
 };
-struct Pessoa cadastro[100];
+struct Data data[5];
 
-int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado);	//Coloca os prototipos sempre depois do struct
+void ordena(struct Data vet[], int tam);	//Coloca os prototipos sempre depois do struct
 
-int buscaBinaria(struct Pessoa cadastro[], int tamanho, int buscado)	//Para entender sobre busca binaria, ver: https://www.ime.usp.br/~pf/algoritmos/aulas/bubi2.html
+void ordena(struct Data vet[], int tam)
 {
-	int esquerda, direita, meio;
-	esquerda=0;															//MAS O QUE E ISSO?
-	direita=tamanho;
-	while(esquerda<=direita)
+	int i, j, chave;
+	for(i=1; i<tam; i++)					//Inicio do insection sort, para saber mais: 
 	{
-		meio=(esquerda+direita)/2;
-		if(cadastro[meio].rg==buscado)
-			return meio;
-		if(cadastro[meio].rg<buscado)
-			esquerda=meio+1;
-		else
-			direita=meio-1;
+		chave=vet[i].ano;
+		j=i-1;
+		
+		while(j>=0 && vet[j].ano>chave)
+		{
+			vet[j+1].ano=vet[j].ano;
+			vet[j+1].mes=vet[j].mes;
+			vet[j+1].dia=vet[j].dia;
+			j=j-1;
+		}
 	}
-	return -1;
 	
+	for(i=1; i<tam; i++)					//Insection sort para organizar as datas pelo mes
+	{
+		chave=vet[i].mes;
+		j=i-1;
+		
+		while(j>=0 && vet[j].mes>chave && vet[j].ano==vet[j+1].ano)
+		{
+			vet[j+1].mes==vet[j].mes;
+			vet[j+1].dia==vet[j].dia;
+			j=j-1;
+		}
+	}
+	
+	for(i=1; i<tam; i++)					//Organizando as datas por dia
+	{
+		chave=vet[i].dia;
+		j=i-1;
+		
+		while(j>=0 && vet[j].dia>chave && vet[j].mes==vet[j+1].mes && vet[j].ano==vet[j+1].ano)
+		{
+			vet[j+1].dia==vet[j].dia;
+			j--;
+		}
+	}
+	printf("Ordem Cronologia:\n\n");
+	for(i=0; i<tam; i++)
+	{
+		printf("Ano: %d | Mes: %d | Dia: %d\n", vet[j].ano, vet[j].mes, vet[j].dia);
+	}
 }
 
 int main()
 {
-	/*					//Bem, o algoritmo funciona, boa sorte tentando ordenar 100 rgs diferentes para testar
-	int buscado, j;
-	for(j=0; j<100; j++)
-		scanf("%d", &cadastro[j].rg);
-	printf("Digite o rg que deseja encontrar\n");
-	scanf("%d", &buscado);
-	j=buscaBinaria(cadastro, 100, buscado);
-	if(j!=-1)
-		printf("O indice do rg %d nos arquivos eh %d\n", buscado, j);
-	else
-		printf("rg invalido\n");
-	*/
+	int i;
+	for (i=0; i<5; i++)
+	{
+		data[i].ano=rand();
+		data[i].mes=rand()%12;
+		data[i].dia=rand()%30;
+	}
+	ordena(data, 10);
 }
