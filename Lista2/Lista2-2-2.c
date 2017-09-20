@@ -14,7 +14,7 @@ void ordena(struct Data vet[], int tam);	//Coloca os prototipos sempre depois do
 void ordena(struct Data vet[], int tam)
 {
 	int i, j, chave, chave2, chave3;
-	for(i=1; i<tam; i++)					//Inicio do insection sort, para saber mais: 
+	for(i=1; i<tam; i++)					//Inicio do insection sort, para saber mais: http://slideplayer.com.br/slide/10908957/
 	{
 		chave=vet[i].ano;
 		chave2=vet[i].mes;
