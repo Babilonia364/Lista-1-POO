@@ -17,4 +17,5 @@ int main()
 	int V1[tam1], V2[tam2], *V3;
 	V3=malloc((tam1+tam2)*sizeof(int));
 	V3=Union(V1, V2, tam1, tam2);
+	free(V3);
 }
