@@ -1,2 +1,3 @@
-# Lista-1-POO
-Lista 1 terminada, se tiverem algo a adicionar, favor entrar em contato ^^
+# NÃO COPIEM IGUAL CARALEO
+
+SE EU ZERAR, QUEM TIVER COPIADO IGUAL VAI TOMAR UM TIRO NA PERNA
