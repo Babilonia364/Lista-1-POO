@@ -4,7 +4,7 @@
 int main()																	//Nessa questao, aparentemente, precisamos conver char em int
 {																			//Pois retiramos os numeros de um txt e eles vem em char
 	FILE *arqEntra, *arqSai;
-	char auxChar;
+	char auxChar[100];
 	int aux, vet[6], i=0, j;
 	arqEntra=fopen("teste.txt", "r");										//Assume que voce tem os arquivos com numeros desordenados e separados por quebra de linha, sobre o nome de teste.txt no pc
 	if(arqEntra==NULL)														//Com apenas 6 numeros distintos
@@ -12,13 +12,10 @@ int main()																	//Nessa questao, aparentemente, precisamos conver cha
 	arqSai=fopen("ordenado.txt", "w");										//Cria um arquivo com numeros ordenados
 	if(arqEntra==NULL)
 		printf("Erro no arquivo de saida gentil cavalheiro\n");
-	while(fscanf(arqEntra, "%c", &auxChar)!= EOF)							//To com preguiça de pensar
+	while(fscanf(arqEntra, "%s", auxChar)!= EOF)							//To com preguiça de pensar
 	{
-		if(auxChar!='\n')													//Como os char devem estar espaçados por quebras de linha, precisamos desse if
-		{
-			vet[i]=auxChar-48;												//Gambiarra para transformar char em int
-			i++;
-		}
+		vet[i]=atoi(auxChar);												//Funcao para transformar string em int
+		i++;
 	}
 	for(i=1; i<6; i++)														//Insection sort da massa
 	{
@@ -31,9 +28,10 @@ int main()																	//Nessa questao, aparentemente, precisamos conver cha
 		}
 		vet[j+1]=aux;
 	}
-	for(i=0; i<6; i++)														//Aqui tá rolando algum bug, na hora de preencher, que tá fugindo ao meu controle
+	for(i=0; i<6; i++)
 	{
-		fprintf(arqSai, "%c", vet[i]+48);									//Gambiarra para transformar int em char
+		sprintf(auxChar, "%d", vet[i]);										//Funcao para converter string em int
+		fprintf(arqSai, "%s", auxChar);
 		fprintf(arqSai, "%c", '\n');
 	}
 	fclose(arqEntra);
