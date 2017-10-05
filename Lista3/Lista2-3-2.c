@@ -36,4 +36,6 @@ int main()																	//Nessa questao, aparentemente, precisamos conver cha
 		fprintf(arqSai, "%c", vet[i]+48);									//Gambiarra para transformar int em char
 		fprintf(arqSai, "%c", '\n');
 	}
+	fclose(arqEntra);
+	fclose(arqSai);
 }
