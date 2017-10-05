@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main()																	//Nessa questao, aparentemente, precisamos conver char em int
-{																			//Pois retiramos os numeros de um txt e eles vem em int
+{																			//Pois retiramos os numeros de um txt e eles vem em char
 	FILE *arqEntra, *arqSai;
 	char auxChar;
 	int aux, vet[6], i=0, j;
