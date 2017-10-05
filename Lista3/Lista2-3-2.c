@@ -30,8 +30,7 @@ int main()																	//Nessa questao, aparentemente, precisamos conver cha
 	}
 	for(i=0; i<6; i++)
 	{
-		sprintf(auxChar, "%d", vet[i]);										//Funcao para converter string em int
-		fprintf(arqSai, "%s", auxChar);
+		fprintf(arqSai, "%d", vet[i]);
 		fprintf(arqSai, "%c", '\n');
 	}
 	fclose(arqEntra);
